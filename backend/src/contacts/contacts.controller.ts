@@ -6,61 +6,56 @@ import {
   Delete,
   Body,
   Param,
-  NotFoundException,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
-
-interface Contact {
-  id: string;
-  [key: string]: unknown;
-}
+import { ContactsService } from './contacts.service';
+import { CreateContactDto, UpdateContactDto } from './dto';
 
 @Controller('contacts')
 export class ContactsController {
-  // temporary in-memory store because `ContactsService` is empty in this project
-  private contacts: Contact[] = [];
+  constructor(private readonly contactsService: ContactsService) {}
 
   @Post()
-  create(@Body() createContactDto: Partial<Contact>) {
-    const id = Date.now().toString();
-    const contact: Contact = {
-      id,
-      ...(createContactDto as Record<string, unknown>),
-    };
-    this.contacts.push(contact);
-    return contact;
+  async create(@Body() createContactDto: CreateContactDto) {
+    return this.contactsService.create(createContactDto);
   }
 
   @Get()
-  findAll() {
-    return this.contacts;
+  async findAll() {
+    return this.contactsService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    const contact = this.contacts.find((c) => c.id === id);
-    if (!contact)
-      throw new NotFoundException(`Contact with id ${id} not found`);
+  async findOne(@Param('id') id: string) {
+    const contact = await this.contactsService.findOne(id);
+    if (!contact) {
+      throw new HttpException('Contact not found', HttpStatus.NOT_FOUND);
+    }
     return contact;
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateContactDto: Partial<Contact>) {
-    const idx = this.contacts.findIndex((c) => c.id === id);
-    if (idx === -1)
-      throw new NotFoundException(`Contact with id ${id} not found`);
-    this.contacts[idx] = {
-      ...this.contacts[idx],
-      ...(updateContactDto as Record<string, unknown>),
-    };
-    return this.contacts[idx];
+  async update(
+    @Param('id') id: string,
+    @Body() updateContactDto: UpdateContactDto,
+  ) {
+    const updatedContact = await this.contactsService.update(
+      id,
+      updateContactDto,
+    );
+    if (!updatedContact) {
+      throw new HttpException('Contact not found', HttpStatus.NOT_FOUND);
+    }
+    return updatedContact;
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    const idx = this.contacts.findIndex((c) => c.id === id);
-    if (idx === -1)
-      throw new NotFoundException(`Contact with id ${id} not found`);
-    const [removed] = this.contacts.splice(idx, 1);
-    return removed;
+  async remove(@Param('id') id: string) {
+    const deletedContact = await this.contactsService.remove(id);
+    if (!deletedContact) {
+      throw new HttpException('Contact not found', HttpStatus.NOT_FOUND);
+    }
+    return deletedContact;
   }
 }

@@ -5,13 +5,13 @@ export type ContactDocument = Contact & Document;
 
 @Schema({ timestamps: true })
 export class Contact {
-  @Prop()
+  @Prop({ required: true })
   name?: string;
 
   @Prop()
   email?: string;
 
-  @Prop({ unique: true })
+  @Prop({ required: true, unique: true })
   phone: string;
 }
 

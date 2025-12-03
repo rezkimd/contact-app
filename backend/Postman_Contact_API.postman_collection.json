@@ -1,0 +1,110 @@
+{
+  "info": {
+    "_postman_id": "contact-app-collection",
+    "name": "Contact App API",
+    "description": "Complete CRUD API for Contact Management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Contact",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"phone\": \"+62812345678\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/contacts",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["contacts"]
+        },
+        "description": "Create a new contact. Phone is required, email is optional."
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Contacts",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/contacts",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["contacts"]
+        },
+        "description": "Retrieve all contacts from the database"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Contact by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/contacts/{{contactId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["contacts", "{{contactId}}"]
+        },
+        "description": "Get a specific contact by ID. Replace {{contactId}} with actual MongoDB ObjectId"
+      },
+      "response": []
+    },
+    {
+      "name": "Update Contact",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"jane@example.com\",\n  \"phone\": \"+62898765432\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/contacts/{{contactId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["contacts", "{{contactId}}"]
+        },
+        "description": "Update an existing contact. All fields are optional for PATCH."
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Contact",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/contacts/{{contactId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["contacts", "{{contactId}}"]
+        },
+        "description": "Delete a contact by ID"
+      },
+      "response": []
+    }
+  ]
+}

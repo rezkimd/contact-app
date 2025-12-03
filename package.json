@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "@nestjs/config": "^4.0.2",
     "@nestjs/mongoose": "^11.0.3",
+    "mongodb": "^7.0.0",
     "mongoose": "^8.20.1"
   }
 }
