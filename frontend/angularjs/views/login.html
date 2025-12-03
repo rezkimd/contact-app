@@ -1,0 +1,11 @@
+<div class="login-wrapper">
+  <div class="login-card">
+    <h1>Welcome</h1>
+    <p>Sign in to continue</p>
+    <input ng-model="name" placeholder="Your name" />
+    <input ng-model="phone" placeholder="Phone (e.g. +628...)" />
+    <div style="color:red;min-height:18px">{{error}}</div>
+    <button ng-click="login()">Continue</button>
+    <p style="margin-top:12px;text-align:center;color:#666">Using backend at <strong>http://localhost:3000</strong></p>
+  </div>
+</div>
