@@ -1,1 +1,18 @@
-<p>contacts works!</p>
+<div class="app-shell">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="header">
+      <div class="avatar">U</div>
+      <h2>Contacts</h2>
+    </div>
+
+    <app-contact-list (selectContact)="onSelect($event)"></app-contact-list>
+  </div>
+
+  <!-- CHAT AREA -->
+  <div class="chat-area">
+    <app-chat-area [contact]="selectedContact"></app-chat-area>
+  </div>
+
+</div>

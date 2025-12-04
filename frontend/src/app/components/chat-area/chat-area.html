@@ -1,0 +1,16 @@
+<div class="chat-area">
+  <div class="chat-header" *ngIf="contact">
+    <div class="avatar">{{ contact.name[0] }}</div>
+    <h3>{{ contact.name }}</h3>
+  </div>
+
+  <div class="chat-body">
+    <div *ngIf="contact; else noSelection">
+      <!-- Chat messages would go here -->
+      <p>Chatting with {{ contact.name }}...</p>
+    </div>
+    <ng-template #noSelection>
+      <p>Please select a contact to start chatting.</p>
+    </ng-template>
+  </div>
+</div>

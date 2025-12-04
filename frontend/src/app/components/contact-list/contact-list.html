@@ -1,1 +1,18 @@
-<p>contact-list works!</p>
+<div class="search">
+  <input
+    type="text"
+    placeholder="Search contact..."
+    [(ngModel)]="searchTerm"
+    (input)="search()"
+  />
+</div>
+
+<div class="contacts-list">
+  <app-contact-item
+    *ngFor="let c of contacts"
+    [contact]="c"
+    (click)="selectContact.emit(c)">
+  </app-contact-item>
+
+  <div *ngIf="loading" class="loading">Loading...</div>
+</div>

@@ -54,4 +54,14 @@ export class ContactsService {
     }
     return deletedContact;
   }
+
+  async removeByPhone(phone: string): Promise<ContactDocument | null> {
+    const deletedContact = await this.contactModel
+      .findOneAndDelete({ phone })
+      .exec();
+    if (deletedContact) {
+      this.logger.log(`Contact deleted by phone: ${phone}`);
+    }
+    return deletedContact;
+  }
 }

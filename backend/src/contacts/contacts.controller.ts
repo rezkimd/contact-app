@@ -58,4 +58,16 @@ export class ContactsController {
     }
     return deletedContact;
   }
+
+  @Delete('phone/:phone')
+  async removeByPhone(@Param('phone') phone: string) {
+    const deletedContact = await this.contactsService.removeByPhone(phone);
+    if (!deletedContact) {
+      throw new HttpException(
+        `Contact with phone ${phone} not found`,
+        HttpStatus.NOT_FOUND,
+      );
+    }
+    return deletedContact;
+  }
 }
