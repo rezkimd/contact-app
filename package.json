@@ -1,4 +1,10 @@
 {
+  "scripts": {
+    "dev": "concurrently \"npm --prefix backend run start:dev\" \"npm --prefix frontend start\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
   "dependencies": {
     "@nestjs/config": "^4.0.2",
     "@nestjs/mongoose": "^11.0.3",

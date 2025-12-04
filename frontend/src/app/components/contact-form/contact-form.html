@@ -1,1 +1,38 @@
-<p>contact-form works!</p>
+<div class="modal-backdrop" *ngIf="show" (click)="close.emit()"></div>
+
+<div class="modal" *ngIf="show">
+  <h2>{{ contact ? 'Edit Contact' : 'Add Contact' }}</h2>
+
+  <form (ngSubmit)="submitForm()">
+
+    <label>Name</label>
+    <input
+      type="text"
+      [(ngModel)]="temp.name"
+      name="name"
+      required
+    />
+
+    <label>Phone</label>
+    <input
+      type="text"
+      [(ngModel)]="temp.phone"
+      name="phone"
+      required
+    />
+
+    <label>Email (optional)</label>
+    <input
+      type="email"
+      [(ngModel)]="temp.email"
+      name="email"
+    />
+
+    <div class="buttons">
+      <button type="button" class="cancel" (click)="close.emit()">Cancel</button>
+      <button type="submit" class="save">
+        {{ contact ? 'Update' : 'Create' }}
+      </button>
+    </div>
+  </form>
+</div>

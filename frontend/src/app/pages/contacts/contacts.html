@@ -7,12 +7,27 @@
       <h2>Contacts</h2>
     </div>
 
-    <app-contact-list (selectContact)="onSelect($event)"></app-contact-list>
+    <!-- ContactList-->
+    <app-contact-list 
+      (select)="onSelect($event)" 
+      (edit)="openEdit($event)">
+    </app-contact-list>
   </div>
 
   <!-- CHAT AREA -->
   <div class="chat-area">
     <app-chat-area [contact]="selectedContact"></app-chat-area>
   </div>
+
+  <!-- ADD BUTTON -->
+  <button class="add-btn" (click)="openCreate()">+</button>
+
+  <!-- FORM AREA -->
+  <app-contact-form
+    [show]="showForm"
+    [contact]="editingContact"
+    (save)="onSave($event)"
+    (close)="showForm = false">
+  </app-contact-form>
 
 </div>

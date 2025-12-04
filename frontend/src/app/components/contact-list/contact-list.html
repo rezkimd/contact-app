@@ -7,12 +7,15 @@
   />
 </div>
 
-<div class="contacts-list">
+<div class="contacts-list" #contactList>
   <app-contact-item
     *ngFor="let c of contacts"
     [contact]="c"
-    (click)="selectContact.emit(c)">
+    (select)="select.emit(c)"
+    (edit)="edit.emit(c)">
   </app-contact-item>
 
-  <div *ngIf="loading" class="loading">Loading...</div>
+  <div *If="loading" class="loading">
+    Loading...
+  </div>
 </div>

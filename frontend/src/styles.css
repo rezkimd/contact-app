@@ -12,7 +12,7 @@
 *{box-sizing:border-box;font-family: Inter, Arial, sans-serif}
 body{margin:0;background:var(--bg);height:100vh}
 
-/* Layout similar to WhatsApp: sidebar + chat */
+/* sidebar + chat */
 .app-shell{display:flex;height:100vh;}
 .sidebar{width:320px;background:linear-gradient(180deg,var(--pink-1),var(--pink-3));border-right:4px solid rgba(0,0,0,0.05);display:flex;flex-direction:column}
 .header{padding:16px;display:flex;align-items:center;gap:12px}
@@ -49,5 +49,87 @@ body{margin:0;background:var(--bg);height:100vh}
 /* profile */
 .profile-card{padding:16px}
 .profile-card .avatar{width:96px;height:96px;border-radius:50%;background:var(--pink-5);display:flex;align-items:center;justify-content:center;color:white;font-size:28px;margin-bottom:12px}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(2px);
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 340px;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  animation: pop 0.2s ease;
+}
+
+h2 {
+  margin: 0 0 12px;
+  font-size: 1.2rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.1);
+  margin-bottom: 12px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.cancel {
+  background: #ccc;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.save {
+  background: var(--pink-5);
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.add-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 54px;
+  height: 54px;
+  background: var(--pink-5);
+  border-radius: 50%;
+  color: white;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+@keyframes pop {
+  from { transform: translate(-50%, -40%); opacity: 0; }
+  to { transform: translate(-50%, -50%); opacity: 1; }
+}
+
 
 @media(max-width:800px){.sidebar{display:none}.app-shell{flex-direction:column}.chat-header{padding:8px}}

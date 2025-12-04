@@ -1,9 +1,10 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, EventEmitter, Output, AfterViewInit, Inject, PLATFORM_ID, ElementRef, ViewChild } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ContactsService } from '../../service/contacts';
 import { Contact } from '../../models/contact.model';
 import { ContactItem } from '../contact-item/contact-item';
+import { Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-contact-list',
@@ -11,7 +12,7 @@ import { ContactItem } from '../contact-item/contact-item';
   templateUrl: './contact-list.html',
   styleUrl: './contact-list.css',
 })
-export class ContactListComponent implements OnInit {
+export class ContactListComponent implements OnInit, AfterViewInit {
   contacts: Contact[] = [];
   searchTerm = '';
   limit = 20;
@@ -19,24 +20,36 @@ export class ContactListComponent implements OnInit {
   loading = false;
   end = false;
 
-  @Output() selectContact = new EventEmitter<Contact>();
+  @Output() select = new EventEmitter<Contact>();
+  @Output() edit = new EventEmitter<Contact>();
+  @Output() loaded = new EventEmitter<void>();
 
-  constructor(private contactService: ContactsService) {}
+  @ViewChild('contactList', { static: false }) contactListRef!: ElementRef;
+
+  constructor(
+    private contactService: ContactsService,
+    private renderer: Renderer2,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   ngOnInit(): void {
     this.loadContacts();
+  }
 
-    // infinite scroll listener
+  ngAfterViewInit(): void {
+ 
+    if (!isPlatformBrowser(this.platformId)) return;
+
     setTimeout(() => {
-      const list = document.querySelector('.contacts-list');
-      if (list) {
-        list.addEventListener('scroll', () => {
-          if (list.scrollTop + list.clientHeight >= list.scrollHeight - 10) {
+      const listEl = this.contactListRef?.nativeElement;
+      if (listEl) {
+        this.renderer.listen(listEl, 'scroll', () => {
+          if (listEl.scrollTop + listEl.clientHeight >= listEl.scrollHeight - 10) {
             this.loadContacts();
           }
         });
       }
-    }, 200);
+    });
   }
 
   loadContacts() {
@@ -49,6 +62,7 @@ export class ContactListComponent implements OnInit {
       this.contacts.push(...res);
       this.skip += this.limit;
       this.loading = false;
+      this.loaded.emit();
     });
   }
 
@@ -62,5 +76,9 @@ export class ContactListComponent implements OnInit {
         c.name.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
     });
+  }
+
+  onEdit(contact: Contact) {
+    this.edit.emit(contact);
   }
 }
