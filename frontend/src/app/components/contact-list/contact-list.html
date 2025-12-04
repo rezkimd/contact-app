@@ -1,11 +1,13 @@
-<div class="search">
+<!-- <div class="search">
   <input
     type="text"
     placeholder="Search contact..."
     [(ngModel)]="searchTerm"
     (input)="search()"
   />
-</div>
+</div> -->
+
+<app-contact-header (search)="onSearch($event)"></app-contact-header>
 
 <div class="contacts-list" #contactList appLoadingWrapper:true>
   <app-contact-item

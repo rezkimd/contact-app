@@ -1,0 +1,6 @@
+.contact-item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:8px;cursor:pointer}
+.contact-item:hover{background:rgba(0,0,0,0.03)}
+.contact-item .pic{width:40px;height:40px;border-radius:50%;background:var(--pink-4);display:flex;align-items:center;justify-content:center;color:white}
+.contact-item .meta{flex:1}
+.contact-item .meta .name{font-weight:600}
+.contact-item .meta .desc{font-size:0.85rem;color:#444}

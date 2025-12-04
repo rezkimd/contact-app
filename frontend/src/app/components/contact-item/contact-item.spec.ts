@@ -14,7 +14,16 @@ describe('ContactItem', () => {
 
     fixture = TestBed.createComponent(ContactItem);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+
+    component.contact = {
+      _id: '1',
+      name: 'Test User',
+      phone: '+620000000',
+      email: 'test@example.com',
+      createdAt: '',
+      updatedAt: ''
+    };
+    fixture.detectChanges();
   });
 
   it('should create', () => {

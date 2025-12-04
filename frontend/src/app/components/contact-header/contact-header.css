@@ -1,0 +1,74 @@
+.header-container {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  background: var(--pink-1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 2px solid rgba(0,0,0,0.05);
+}
+
+.header-container input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.search{padding:12px}
+.search input{width:100%;padding:10px;border-radius:24px;border:1px solid rgba(0,0,0,0.08)}
+.header{padding:16px;display:flex;align-items:center;gap:12px}
+.header .avatar{width:48px;height:48px;border-radius:50%;background:var(--pink-5);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+.header h2{margin:0;font-size:1.1rem;color:#111}
+.header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  align-content: left;
+  gap: 12px;
+  padding: 12px;
+  background: var(--pink-1);
+  border-bottom: 2px solid rgba(0,0,0,0.05);
+  position: sticky;
+}
+
+/* Bagian Avatar dan Title */
+.header-top {
+  display: flex;
+  align-content: left;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-top .avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--pink-5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+}
+
+.header-top h2 {
+  margin: 0;
+  color: #111;
+  font-size: 1.2rem;
+}
+
+/* Search field */
+.header-container input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: white;
+}
+
+/* profile */
+.profile-card{padding:16px}
+.profile-card .avatar{width:96px;height:96px;border-radius:50%;background:var(--pink-5);display:flex;align-items:center;justify-content:center;color:white;font-size:28px;margin-bottom:12px}

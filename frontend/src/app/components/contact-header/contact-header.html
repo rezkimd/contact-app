@@ -1,0 +1,14 @@
+<div class="header-container">
+
+  <div class="header-top">
+    <div class="avatar">U</div>
+    <h2>Username</h2>
+  </div>
+
+  <input 
+    type="text" 
+    placeholder="Search..." 
+    [(ngModel)]="searchTerm"
+    (input)="search.emit(searchTerm)"
+  />
+</div>

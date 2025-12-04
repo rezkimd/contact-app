@@ -5,11 +5,11 @@ import { ContactsService } from '../../service/contacts';
 import { Contact } from '../../models/contact.model';
 import { ContactItem } from '../contact-item/contact-item';
 import { Renderer2 } from '@angular/core';
-import { LoadingWrapper } from '../../directives/loading-wrapper';
+import { ContactHeader } from '../contact-header/contact-header';
 
 @Component({
   selector: 'app-contact-list',
-  imports: [CommonModule, FormsModule, ContactItem, LoadingWrapper],
+  imports: [CommonModule, FormsModule, ContactItem, ContactHeader],
   templateUrl: './contact-list.html',
   styleUrl: './contact-list.css',
 })
@@ -68,7 +68,8 @@ export class ContactListComponent implements OnInit, AfterViewInit {
     });
   }
 
-  search() {
+  onSearch(term: string) {
+    this.searchTerm = term
     this.skip = 0;
     this.end = false;
     this.contacts = [];
