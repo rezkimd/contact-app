@@ -5,17 +5,18 @@ import { ContactsService } from '../../service/contacts';
 import { Contact } from '../../models/contact.model';
 import { ContactItem } from '../contact-item/contact-item';
 import { Renderer2 } from '@angular/core';
+import { LoadingWrapper } from '../../directives/loading-wrapper';
 
 @Component({
   selector: 'app-contact-list',
-  imports: [CommonModule, FormsModule, ContactItem],
+  imports: [CommonModule, FormsModule, ContactItem, LoadingWrapper],
   templateUrl: './contact-list.html',
   styleUrl: './contact-list.css',
 })
 export class ContactListComponent implements OnInit, AfterViewInit {
   contacts: Contact[] = [];
   searchTerm = '';
-  limit = 20;
+  limit = 10;
   skip = 0;
   loading = false;
   end = false;
@@ -23,6 +24,7 @@ export class ContactListComponent implements OnInit, AfterViewInit {
   @Output() select = new EventEmitter<Contact>();
   @Output() edit = new EventEmitter<Contact>();
   @Output() loaded = new EventEmitter<void>();
+  @Output() delete = new EventEmitter<Contact>();
 
   @ViewChild('contactList', { static: false }) contactListRef!: ElementRef;
 

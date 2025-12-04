@@ -5,4 +5,9 @@
     <div class="name">{{ contact.name }}</div>
     <div class="desc">{{ contact.phone }}</div>
   </div>
+    <button class="edit-btn" (click)="onEdit(contact); $event.stopPropagation()">...</button>
+
+   <button class="delete-btn" (click)="onDelete(contact); $event.stopPropagation()">✕</button>
+
+
 </div>

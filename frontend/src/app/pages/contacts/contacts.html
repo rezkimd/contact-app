@@ -10,7 +10,8 @@
     <!-- ContactList-->
     <app-contact-list 
       (select)="onSelect($event)" 
-      (edit)="openEdit($event)">
+      (edit)="openEdit($event)"
+      (delete)="onDelete($event)">
     </app-contact-list>
   </div>
 

@@ -19,13 +19,13 @@ export class ContactForm {
   temp: Partial<Contact> = {};
 
   ngOnChanges() {
-    // copy data contact saat edit
     this.temp = this.contact
       ? { ...this.contact }
       : { name: '', phone: '', email: '' };
   }
 
   submitForm() {
+    console.log("FORM VALUE", this.temp);
     this.save.emit(this.temp);
   }
 }

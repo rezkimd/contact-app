@@ -30,6 +30,3 @@ export class ContactsService {
     return this.http.delete<Contact>(`${this.baseUrl}/${id}`);
   }
 }
-export class Contacts {
-  
-}
