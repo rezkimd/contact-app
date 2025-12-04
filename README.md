@@ -2,7 +2,6 @@
 Proyek ini adalah aplikasi fullstack sebagai technical test IT VICO.
 
 ## Tech Stack
-
 - **Backend:** NestJS dengan MongoDB
 - **Frontend:** AngularJS
 ---
@@ -20,18 +19,18 @@ Sebelum menjalankan proyek ini, pastikan:
 
 1. Clone repository:
 
-```
-bash
+
+
 git clone https://github.com/rezkimd/contact-app.git
 cd contact-app
-```
+
 
 2. Requirement Installation:
-```
-bash
+
+
 npm install --prefix backend
 npm install --prefix frontend
-```
+
 
 3. Lengkapi file .env
 
@@ -39,37 +38,36 @@ Masukkan String URL MongoDB ke file .env (dir:".backend\.env")
 MONGODB_URI=mongodb://<username>:<password>@host:<port>/<cluster-name>
 
 4. Running Application :
-```
-bash
+
 npm run dev
-``` 
+ 
 note: Script `npm run dev` sudah **dikonfigurasi untuk menjalankan frontend dan backend secara bersamaan**.
 
 ## Running Unit Test
 ### Backend (NestJS)
-```
-bash
+
+
 cd backend
 npm run test          # menjalankan semua unit test
-```
 
-```
-bash
+
+
+
 npm run test:watch    # watch mode, auto rerun saat file berubah
-```
 
-```
-bash
+
+
+
 npm run test:cov      # test + coverage
-```
+
 
 ### FrontEnd (Angular)
 
-```
-bash
+
+
 cd frontend
 ng test   
-```
+
 
 ## Additional Note
 **Terdapat file READ.ME di dalam backend untuk dokumentasi API**
